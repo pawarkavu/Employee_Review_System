@@ -6,6 +6,7 @@ const session = require("express-session");
 const passport = require("passport");
 const localStrategy = require('./configs/passport')
 const MongoStore = require('connect-mongo')
+require('dotenv').config()
 
 const port = process.env.PORT||8000;
 // creating express app instance
@@ -43,7 +44,7 @@ app.use(session({
   },
   store: MongoStore.create(
       {
-          mongoUrl:'mongodb+srv://pawarkavu:sXNKOslfvQ6cBMuV@cluster0.39fpu.mongodb.net/Employee_Review_System',
+          mongoUrl:process.env.DATABASE,
           autoRemove:'disabled'
       },
       function(err){
